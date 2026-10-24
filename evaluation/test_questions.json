@@ -1,0 +1,191 @@
+[
+  {
+    "id": "Q01",
+    "question": "How do I validate incoming JSON data in FastAPI?",
+    "category": "paraphrase",
+    "in_scope": true,
+    "gold_sections": [
+      {
+        "source": "tutorial/body.md",
+        "heading_contains": "Results"
+      }
+    ]
+  },
+  {
+    "id": "Q02",
+    "question": "How can I make an endpoint accessible only to logged-in users?",
+    "category": "paraphrase",
+    "in_scope": true,
+    "gold_sections": [
+      {
+        "source": "tutorial/security/get-current-user.md",
+        "heading_contains": "Inject the current user"
+      },
+      {
+        "source": "tutorial/security/simple-oauth2.md",
+        "heading_contains": "Update the dependencies"
+      }
+    ]
+  },
+  {
+    "id": "Q03",
+    "question": "How can I return a custom error when a request contains invalid data?",
+    "category": "direct",
+    "in_scope": true,
+    "gold_sections": [
+      {
+        "source": "tutorial/handling-errors.md",
+        "heading_contains": "Override request validation exceptions"
+      },
+      {
+        "source": "tutorial/handling-errors.md",
+        "heading_contains": "Use the `RequestValidationError` body"
+      }
+    ]
+  },
+  {
+    "id": "Q04",
+    "question": "How do I reuse the same database connection logic across several endpoints?",
+    "category": "paraphrase",
+    "in_scope": true,
+    "gold_sections": [
+      {
+        "source": "tutorial/sql-databases.md",
+        "heading_contains": "Create a Session Dependency"
+      },
+      {
+        "source": "tutorial/dependencies/index.md",
+        "heading_contains": "What is \"Dependency Injection\""
+      }
+    ]
+  },
+  {
+    "id": "Q05",
+    "question": "What will the weather be tomorrow?",
+    "category": "out_of_scope",
+    "in_scope": false,
+    "gold_sections": []
+  },
+  {
+    "id": "Q06",
+    "question": "How do I define a Pydantic request body model with required and optional fields?",
+    "category": "direct",
+    "in_scope": true,
+    "gold_sections": [
+      {
+        "source": "tutorial/body.md",
+        "heading_contains": "Create your data model"
+      }
+    ]
+  },
+  {
+    "id": "Q07",
+    "question": "How does FastAPI decide whether a parameter comes from the path, query string, or JSON body?",
+    "category": "multi_section",
+    "in_scope": true,
+    "gold_sections": [
+      {
+        "source": "tutorial/body.md",
+        "heading_contains": "Request body + path + query parameters"
+      },
+      {
+        "source": "tutorial/body-multiple-params.md",
+        "heading_contains": "Mix `Path`, `Query` and body parameters"
+      }
+    ]
+  },
+  {
+    "id": "Q08",
+    "question": "How can I restrict a query parameter to a minimum and maximum string length?",
+    "category": "direct",
+    "in_scope": true,
+    "gold_sections": [
+      {
+        "source": "tutorial/query-params-str-validations.md",
+        "heading_contains": "Add more validations"
+      }
+    ]
+  },
+  {
+    "id": "Q09",
+    "question": "How can I validate that a path parameter is greater than zero?",
+    "category": "direct",
+    "in_scope": true,
+    "gold_sections": [
+      {
+        "source": "tutorial/path-params-numeric-validations.md",
+        "heading_contains": "Number validations: greater than and less than or equal"
+      }
+    ]
+  },
+  {
+    "id": "Q10",
+    "question": "How can I reuse a dependency that itself needs another dependency?",
+    "category": "multi_section",
+    "in_scope": true,
+    "gold_sections": [
+      {
+        "source": "tutorial/dependencies/sub-dependencies.md",
+        "heading_contains": "Second dependency"
+      },
+      {
+        "source": "tutorial/dependencies/sub-dependencies.md",
+        "heading_contains": "Use the dependency"
+      }
+    ]
+  },
+  {
+    "id": "Q11",
+    "question": "How do I declare the response schema and filter returned fields in FastAPI?",
+    "category": "direct",
+    "in_scope": true,
+    "gold_sections": [
+      {
+        "source": "tutorial/response-model.md",
+        "heading_contains": "Return Type and Data Filtering"
+      },
+      {
+        "source": "tutorial/response-model.md",
+        "heading_contains": "`response_model` Parameter"
+      }
+    ]
+  },
+  {
+    "id": "Q12",
+    "question": "How can I return a 201 Created status code when creating a resource?",
+    "category": "direct",
+    "in_scope": true,
+    "gold_sections": [
+      {
+        "source": "tutorial/response-status-code.md",
+        "heading_contains": "About HTTP status codes"
+      },
+      {
+        "source": "tutorial/response-status-code.md",
+        "heading_contains": "Changing the default"
+      }
+    ]
+  },
+  {
+    "id": "Q13",
+    "question": "Across all FastAPI tutorial topics, which security mechanism is most commonly recommended, and how many chapters endorse it?",
+    "category": "global_challenge",
+    "in_scope": true,
+    "gold_sections": [],
+    "evaluation_note": "Global aggregation challenge; excluded from Hit Rate@4 and MRR."
+  },
+  {
+    "id": "Q14",
+    "question": "What is the current stock price of Microsoft?",
+    "category": "out_of_scope",
+    "in_scope": false,
+    "gold_sections": []
+  },
+  {
+    "id": "Q15",
+    "question": "Who won the most recent FIFA World Cup?",
+    "category": "out_of_scope",
+    "in_scope": false,
+    "gold_sections": []
+  }
+]

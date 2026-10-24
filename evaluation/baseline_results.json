@@ -1,0 +1,344 @@
+{
+  "method": "similarity_baseline",
+  "scored_questions": 11,
+  "hit_rate_at_4": 0.36363636363636365,
+  "mrr_at_4": 0.25757575757575757,
+  "average_latency_seconds": 0.07296363636363636,
+  "config": {
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "top_k": 12,
+    "similarity_threshold": 0.35
+  },
+  "results": [
+    {
+      "id": "Q01",
+      "category": "paraphrase",
+      "first_relevant_rank": null,
+      "hit_at_4": 0,
+      "reciprocal_rank": 0.0,
+      "latency_seconds": 0.724,
+      "top_4": [
+        {
+          "source": "tutorial/path-params.md",
+          "heading": "Path Parameters { #path-parameters } > Data validation { #data-validation }",
+          "similarity": 0.6812
+        },
+        {
+          "source": "tutorial/handling-errors.md",
+          "heading": "Handling Errors { #handling-errors } > Override the default exception handlers { #override-the-default-exception-handlers }",
+          "similarity": 0.666
+        },
+        {
+          "source": "tutorial/handling-errors.md",
+          "heading": "Handling Errors { #handling-errors } > Override the default exception handlers { #override-the-default-exception-handlers } > Use the `RequestValidationError` body { #use-the-requestvalidationerror-body }",
+          "similarity": 0.664
+        },
+        {
+          "source": "tutorial/first-steps.md",
+          "heading": "First Steps { #first-steps } > OpenAPI { #openapi } > Check the `openapi.json` { #check-the-openapi-json }",
+          "similarity": 0.6583
+        }
+      ]
+    },
+    {
+      "id": "Q02",
+      "category": "paraphrase",
+      "first_relevant_rank": null,
+      "hit_at_4": 0,
+      "reciprocal_rank": 0.0,
+      "latency_seconds": 0.0094,
+      "top_4": [
+        {
+          "source": "tutorial/security/first-steps.md",
+          "heading": "Security - First Steps { #security-first-steps } > The `password` flow { #the-password-flow }",
+          "similarity": 0.4669
+        },
+        {
+          "source": "tutorial/security/first-steps.md",
+          "heading": "Security - First Steps { #security-first-steps }",
+          "similarity": 0.3928
+        },
+        {
+          "source": "tutorial/security/get-current-user.md",
+          "heading": "Get Current User { #get-current-user } > Recap { #recap }",
+          "similarity": 0.3533
+        },
+        {
+          "source": "tutorial/security/first-steps.md",
+          "heading": "Security - First Steps { #security-first-steps } > The `password` flow { #the-password-flow }",
+          "similarity": 0.3519
+        }
+      ]
+    },
+    {
+      "id": "Q03",
+      "category": "direct",
+      "first_relevant_rank": null,
+      "hit_at_4": 0,
+      "reciprocal_rank": 0.0,
+      "latency_seconds": 0.0071,
+      "top_4": [
+        {
+          "source": "tutorial/handling-errors.md",
+          "heading": "Handling Errors { #handling-errors } > Override the default exception handlers { #override-the-default-exception-handlers } > Reuse **FastAPI**'s exception handlers { #reuse-fastapis-exception-handlers }",
+          "similarity": 0.6646
+        },
+        {
+          "source": "tutorial/response-status-code.md",
+          "heading": "Response Status Code { #response-status-code } > About HTTP status codes { #about-http-status-codes }",
+          "similarity": 0.6073
+        },
+        {
+          "source": "tutorial/handling-errors.md",
+          "heading": "Handling Errors { #handling-errors } > Override the default exception handlers { #override-the-default-exception-handlers } > Reuse **FastAPI**'s exception handlers { #reuse-fastapis-exception-handlers }",
+          "similarity": 0.5973
+        },
+        {
+          "source": "tutorial/handling-errors.md",
+          "heading": "Handling Errors { #handling-errors }",
+          "similarity": 0.5905
+        }
+      ]
+    },
+    {
+      "id": "Q04",
+      "category": "paraphrase",
+      "first_relevant_rank": 3,
+      "hit_at_4": 1,
+      "reciprocal_rank": 0.3333333333333333,
+      "latency_seconds": 0.007,
+      "top_4": [
+        {
+          "source": "tutorial/sql-databases.md",
+          "heading": "SQL (Relational) Databases { #sql-relational-databases } > Create the App with a Single Model { #create-the-app-with-a-single-model } > Create an Engine { #create-an-engine }",
+          "similarity": 0.465
+        },
+        {
+          "source": "tutorial/sql-databases.md",
+          "heading": "SQL (Relational) Databases { #sql-relational-databases } > Create the App with a Single Model { #create-the-app-with-a-single-model } > Create an Engine { #create-an-engine }",
+          "similarity": 0.437
+        },
+        {
+          "source": "tutorial/dependencies/index.md",
+          "heading": "Dependencies { #dependencies } > What is \"Dependency Injection\" { #what-is-dependency-injection }",
+          "similarity": 0.3687
+        },
+        {
+          "source": "tutorial/sql-databases.md",
+          "heading": "SQL (Relational) Databases { #sql-relational-databases } > Update the App with Multiple Models { #update-the-app-with-multiple-models }",
+          "similarity": 0.3514
+        }
+      ]
+    },
+    {
+      "id": "Q06",
+      "category": "direct",
+      "first_relevant_rank": null,
+      "hit_at_4": 0,
+      "reciprocal_rank": 0.0,
+      "latency_seconds": 0.0102,
+      "top_4": [
+        {
+          "source": "tutorial/body-fields.md",
+          "heading": "Body - Fields { #body-fields }",
+          "similarity": 0.6961
+        },
+        {
+          "source": "tutorial/body.md",
+          "heading": "Request Body { #request-body }",
+          "similarity": 0.6838
+        },
+        {
+          "source": "tutorial/body.md",
+          "heading": "Request Body { #request-body } > Without Pydantic { #without-pydantic }",
+          "similarity": 0.6762
+        },
+        {
+          "source": "tutorial/body-fields.md",
+          "heading": "Body - Fields { #body-fields } > Recap { #recap }",
+          "similarity": 0.6281
+        }
+      ]
+    },
+    {
+      "id": "Q07",
+      "category": "multi_section",
+      "first_relevant_rank": 1,
+      "hit_at_4": 1,
+      "reciprocal_rank": 1.0,
+      "latency_seconds": 0.0071,
+      "top_4": [
+        {
+          "source": "tutorial/body.md",
+          "heading": "Request Body { #request-body } > Request body + path + query parameters { #request-body-path-query-parameters }",
+          "similarity": 0.7006
+        },
+        {
+          "source": "tutorial/query-params.md",
+          "heading": "Query Parameters { #query-parameters }",
+          "similarity": 0.6642
+        },
+        {
+          "source": "tutorial/path-params.md",
+          "heading": "Path Parameters { #path-parameters }",
+          "similarity": 0.6586
+        },
+        {
+          "source": "tutorial/path-params-numeric-validations.md",
+          "heading": "Path Parameters and Numeric Validations { #path-parameters-and-numeric-validations } > Order the parameters as you need { #order-the-parameters-as-you-need }",
+          "similarity": 0.639
+        }
+      ]
+    },
+    {
+      "id": "Q08",
+      "category": "direct",
+      "first_relevant_rank": null,
+      "hit_at_4": 0,
+      "reciprocal_rank": 0.0,
+      "latency_seconds": 0.0065,
+      "top_4": [
+        {
+          "source": "tutorial/query-params-str-validations.md",
+          "heading": "Query Parameters and String Validations { #query-parameters-and-string-validations } > Add `Query` to `Annotated` in the `q` parameter { #add-query-to-annotated-in-the-q-parameter }",
+          "similarity": 0.5248
+        },
+        {
+          "source": "tutorial/query-params-str-validations.md",
+          "heading": "Query Parameters and String Validations { #query-parameters-and-string-validations } > Alternative (old): `Query` as the default value { #alternative-old-query-as-the-default-value }",
+          "similarity": 0.5013
+        },
+        {
+          "source": "tutorial/query-params-str-validations.md",
+          "heading": "Query Parameters and String Validations { #query-parameters-and-string-validations } > Add `Query` to `Annotated` in the `q` parameter { #add-query-to-annotated-in-the-q-parameter }",
+          "similarity": 0.4918
+        },
+        {
+          "source": "tutorial/query-params.md",
+          "heading": "Query Parameters { #query-parameters }",
+          "similarity": 0.4782
+        }
+      ]
+    },
+    {
+      "id": "Q09",
+      "category": "direct",
+      "first_relevant_rank": null,
+      "hit_at_4": 0,
+      "reciprocal_rank": 0.0,
+      "latency_seconds": 0.0065,
+      "top_4": [
+        {
+          "source": "tutorial/path-params-numeric-validations.md",
+          "heading": "Path Parameters and Numeric Validations { #path-parameters-and-numeric-validations }",
+          "similarity": 0.5314
+        },
+        {
+          "source": "tutorial/path-params.md",
+          "heading": "Path Parameters { #path-parameters } > Predefined values { #predefined-values }",
+          "similarity": 0.4568
+        },
+        {
+          "source": "tutorial/first-steps.md",
+          "heading": "First Steps { #first-steps } > Recap, step by step { #recap-step-by-step } > Step 3: create a *path operation* { #step-3-create-a-path-operation }",
+          "similarity": 0.4036
+        },
+        {
+          "source": "tutorial/path-params.md",
+          "heading": "Path Parameters { #path-parameters } > Predefined values { #predefined-values } > Working with Python *enumerations* { #working-with-python-enumerations }",
+          "similarity": 0.3942
+        }
+      ]
+    },
+    {
+      "id": "Q10",
+      "category": "multi_section",
+      "first_relevant_rank": null,
+      "hit_at_4": 0,
+      "reciprocal_rank": 0.0,
+      "latency_seconds": 0.0067,
+      "top_4": [
+        {
+          "source": "tutorial/dependencies/classes-as-dependencies.md",
+          "heading": "Classes as Dependencies { #classes-as-dependencies }",
+          "similarity": 0.5875
+        },
+        {
+          "source": "tutorial/dependencies/sub-dependencies.md",
+          "heading": "Sub-dependencies { #sub-dependencies }",
+          "similarity": 0.56
+        },
+        {
+          "source": "tutorial/dependencies/dependencies-in-path-operation-decorators.md",
+          "heading": "Dependencies in path operation decorators { #dependencies-in-path-operation-decorators } > Dependencies errors and return values { #dependencies-errors-and-return-values }",
+          "similarity": 0.5115
+        },
+        {
+          "source": "tutorial/dependencies/sub-dependencies.md",
+          "heading": "Sub-dependencies { #sub-dependencies } > Using the same dependency multiple times { #using-the-same-dependency-multiple-times }",
+          "similarity": 0.475
+        }
+      ]
+    },
+    {
+      "id": "Q11",
+      "category": "direct",
+      "first_relevant_rank": 2,
+      "hit_at_4": 1,
+      "reciprocal_rank": 0.5,
+      "latency_seconds": 0.0106,
+      "top_4": [
+        {
+          "source": "tutorial/response-model.md",
+          "heading": "Response Model - Return Type { #response-model-return-type } > Other Return Type Annotations { #other-return-type-annotations } > Disable Response Model { #disable-response-model }",
+          "similarity": 0.7017
+        },
+        {
+          "source": "tutorial/response-model.md",
+          "heading": "Response Model - Return Type { #response-model-return-type } > Return Type and Data Filtering { #return-type-and-data-filtering }",
+          "similarity": 0.6689
+        },
+        {
+          "source": "tutorial/body.md",
+          "heading": "Request Body { #request-body } > Results { #results }",
+          "similarity": 0.6472
+        },
+        {
+          "source": "tutorial/response-model.md",
+          "heading": "Response Model - Return Type { #response-model-return-type } > `response_model` Parameter { #response-model-parameter }",
+          "similarity": 0.6406
+        }
+      ]
+    },
+    {
+      "id": "Q12",
+      "category": "direct",
+      "first_relevant_rank": 1,
+      "hit_at_4": 1,
+      "reciprocal_rank": 1.0,
+      "latency_seconds": 0.0075,
+      "top_4": [
+        {
+          "source": "tutorial/response-status-code.md",
+          "heading": "Response Status Code { #response-status-code } > About HTTP status codes { #about-http-status-codes }",
+          "similarity": 0.5165
+        },
+        {
+          "source": "tutorial/response-status-code.md",
+          "heading": "Response Status Code { #response-status-code } > About HTTP status codes { #about-http-status-codes }",
+          "similarity": 0.5006
+        },
+        {
+          "source": "tutorial/handling-errors.md",
+          "heading": "Handling Errors { #handling-errors }",
+          "similarity": 0.4941
+        },
+        {
+          "source": "tutorial/response-status-code.md",
+          "heading": "Response Status Code { #response-status-code } > Changing the default { #changing-the-default }",
+          "similarity": 0.4899
+        }
+      ]
+    }
+  ]
+}

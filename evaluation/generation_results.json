@@ -1,0 +1,416 @@
+{
+  "config": {
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "retrieval_mode": "similarity",
+    "top_k": 12,
+    "similarity_threshold": 0.35,
+    "use_reranker": true,
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "context_k": 4,
+    "generator_provider": "gemini",
+    "generator_model": "gemini-3.6-flash",
+    "judge_model": "gemini-3.6-flash"
+  },
+  "judge_scale": "1=poor, 2=partial, 3=good",
+  "results": [
+    {
+      "id": "Q01",
+      "category": "paraphrase",
+      "question": "How do I validate incoming JSON data in FastAPI?",
+      "answer": "In FastAPI, incoming JSON data is validated automatically by adding a Python type declaration (such as declaring a parameter in your function to be of a model type like `Item`) [1]. \n\nWhen you use a Python type declaration for a parameter, FastAPI will [1]:\n* Read the request body as JSON [1].\n* Convert corresponding types if needed [1].\n* Validate the data, returning a clear error if the data is invalid to show where and what the incorrect data was [1].\n\nIf you need to customize how validation errors are handled when invalid data is received, you can override default exception handlers using `RequestValidationError` [2, 3].",
+      "refused": false,
+      "latency_seconds_excluding_judge": 6.782,
+      "evidence": [
+        {
+          "citation": "[1]",
+          "source": "tutorial/body.md",
+          "heading": "Request Body { #request-body } > Results { #results }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/body.md",
+          "text": "## Results { #results }\n\nWith just that Python type declaration, **FastAPI** will:\n\n* Read the body of the request as JSON.\n* Convert the corresponding types (if needed).\n* Validate the data.\n    * If the data is invalid, it will return a nice and clear error, indicating exactly where and what was the incorrect data.\n* Give you the received data in the parameter `item`.\n    * As you declared it in the function to be of type `Item`, you will also have all the editor support (completion, etc) for all of the attributes and their types.\n* Generate [JSON Schema](https://json-schema.org) definitions for your model, you can also use them anywhere else you like if it makes sense for your project.\n* Those schemas will be part of the generated OpenAPI schema, and used by the automatic documentation <abbr title=\"User Interfaces\">UIs</abbr>.",
+          "cosine_similarity": 0.6156
+        },
+        {
+          "citation": "[2]",
+          "source": "tutorial/handling-errors.md",
+          "heading": "Handling Errors { #handling-errors } > Override the default exception handlers { #override-the-default-exception-handlers } > Use the `RequestValidationError` body { #use-the-requestvalidationerror-body }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/handling-errors.md",
+          "text": "### Use the `RequestValidationError` body { #use-the-requestvalidationerror-body }\n\nThe `RequestValidationError` contains the `body` it received with invalid data.\n\nYou could use it while developing your app to log the body and debug it, return it to the user, etc.\n\n\n```python\nfrom fastapi import FastAPI, Request\nfrom fastapi.encoders import jsonable_encoder\nfrom fastapi.exceptions import RequestValidationError\nfrom fastapi.responses import JSONResponse\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\n\n@app.exception_handler(RequestValidationError)\nasync def validation_exception_handler(request: Request, exc: RequestValidationError):\n    return JSONResponse(\n        status_code=422,\n        content=jsonable_encoder({\"detail\": exc.errors(), \"body\": exc.body}),\n    )\n\n\nclass Item(BaseModel",
+          "cosine_similarity": 0.664
+        },
+        {
+          "citation": "[3]",
+          "source": "tutorial/handling-errors.md",
+          "heading": "Handling Errors { #handling-errors } > Override the default exception handlers { #override-the-default-exception-handlers }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/handling-errors.md",
+          "text": "## Override the default exception handlers { #override-the-default-exception-handlers }\n\n**FastAPI** has some default exception handlers.\n\nThese handlers are in charge of returning the default JSON responses when you `raise` an `HTTPException` and when the request has invalid data.\n\nYou can override these exception handlers with your own.",
+          "cosine_similarity": 0.666
+        },
+        {
+          "citation": "[4]",
+          "source": "tutorial/first-steps.md",
+          "heading": "First Steps { #first-steps } > OpenAPI { #openapi } > Check the `openapi.json` { #check-the-openapi-json }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/first-steps.md",
+          "text": "#### Check the `openapi.json` { #check-the-openapi-json }\n\nIf you are curious about what the raw OpenAPI schema looks like, FastAPI automatically generates a JSON (schema) with the descriptions of all your API.\n\nYou can see it directly at: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json).\n\nIt will show a JSON starting with something like:\n\n```JSON\n{\n    \"openapi\": \"3.1.0\",\n    \"info\": {\n        \"title\": \"FastAPI\",\n        \"version\": \"0.1.0\"\n    },\n    \"paths\": {\n        \"/items/\": {\n            \"get\": {\n                \"responses\": {\n                    \"200\": {\n                        \"description\": \"Successful Response\",\n                        \"content\": {\n                            \"application/json\": {\n\n\n\n...\n```",
+          "cosine_similarity": 0.6583
+        }
+      ],
+      "judge": {
+        "context_relevance": 3,
+        "groundedness": 3,
+        "answer_relevance": 3,
+        "rationale": "The assistant directly and accurately answers the question using the retrieved evidence. All claims are fully grounded in the provided sources and cited correctly."
+      }
+    },
+    {
+      "id": "Q02",
+      "category": "paraphrase",
+      "question": "How can I make an endpoint accessible only to logged-in users?",
+      "answer": "I cannot answer this question based on the provided documentation.",
+      "refused": true,
+      "latency_seconds_excluding_judge": 5.269,
+      "evidence": [
+        {
+          "citation": "[1]",
+          "source": "tutorial/security/first-steps.md",
+          "heading": "Security - First Steps { #security-first-steps } > The `password` flow { #the-password-flow }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/security/first-steps.md",
+          "text": "user clicks in the frontend to go to another section of the frontend web app.\n* The frontend needs to fetch some more data from the API.\n    * But it needs authentication for that specific endpoint.",
+          "cosine_similarity": 0.4669
+        },
+        {
+          "citation": "[2]",
+          "source": "tutorial/security/first-steps.md",
+          "heading": "Security - First Steps { #security-first-steps } > The `password` flow { #the-password-flow }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/security/first-steps.md",
+          "text": "* The user types the `username` and `password` in the frontend, and hits `Enter`.\n* The frontend (running in the user's browser) sends that `username` and `password` to a specific URL in our API (declared with `tokenUrl=\"token\"`).\n* The API checks that `username` and `password`, and responds with a \"token\" (we haven't implemented any of this yet).\n    * A \"token\" is just a string with some content that we can use later to verify this user.\n    * Normally, a token is set to expire after some time.\n        * So, the user will have to log in again at some point later.\n        * And if the token is stolen, the risk is less. It is not like a permanent key that will work forever (in most of the cases).\n* The frontend stores that token temporarily somewhere.\n* The user clicks in the frontend to go to another section of the frontend web app.\n* The frontend needs to fetch some more data from the API.\n    * But it needs authentication for that specific",
+          "cosine_similarity": 0.3519
+        },
+        {
+          "citation": "[3]",
+          "source": "tutorial/security/get-current-user.md",
+          "heading": "Get Current User { #get-current-user } > Recap { #recap }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/security/get-current-user.md",
+          "text": "## Recap { #recap }\n\nYou can now get the current user directly in your *path operation function*.\n\nWe are already halfway there.\n\nWe just need to add a *path operation* for the user/client to actually send the `username` and `password`.\n\nThat comes next.",
+          "cosine_similarity": 0.3533
+        },
+        {
+          "citation": "[4]",
+          "source": "tutorial/security/first-steps.md",
+          "heading": "Security - First Steps { #security-first-steps }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/security/first-steps.md",
+          "text": "# Security - First Steps { #security-first-steps }\n\nLet's imagine that you have your **backend** API in some domain.\n\nAnd you have a **frontend** in another domain or in a different path of the same domain (or in a mobile application).\n\nAnd you want to have a way for the frontend to authenticate with the backend, using a **username** and **password**.\n\nWe can use **OAuth2** to build that with **FastAPI**.\n\nBut let's save you the time of reading the full long specification just to find those little pieces of information you need.\n\nLet's use the tools provided by **FastAPI** to handle security.",
+          "cosine_similarity": 0.3928
+        }
+      ],
+      "judge": {
+        "context_relevance": 2,
+        "groundedness": 3,
+        "answer_relevance": 1,
+        "rationale": "The question is in-scope for FastAPI documentation, so refusing to answer results in an answer_relevance score of 1. Groundedness is 3 as no false claims were made. Context relevance is 2 because the retrieved excerpts discuss FastAPI security concepts and getting the current user, but lack the explicit implementation details needed to secure an endpoint."
+      }
+    },
+    {
+      "id": "Q03",
+      "category": "direct",
+      "question": "How can I return a custom error when a request contains invalid data?",
+      "answer": "When a request contains invalid data, FastAPI internally raises a `RequestValidationError` [4]. You can return a custom error response by overriding the default exception handler [2, 4]:\n\n1. Import `RequestValidationError` (from `fastapi.exceptions`) [3, 4].\n2. Create an exception handler function that receives a `Request` and the `RequestValidationError` exception [4].\n3. Decorate the function with `@app.exception_handler(RequestValidationError)` [4].\n4. Return a custom response (such as a `JSONResponse` or `PlainTextResponse`) from your handler function [3, 4].\n\nFor example, you can return a custom `JSONResponse` that includes the validation errors and the received body [3]:\n\n```python\nfrom fastapi import FastAPI, Request\nfrom fastapi.encoders import jsonable_encoder\nfrom fastapi.exceptions import RequestValidationError\nfrom fastapi.responses import JSONResponse\n\napp = FastAPI()\n\n@app.exception_handler(RequestValidationError)\nasync def validation_exception_handler(request: Request, exc: RequestValidationError):\n    return JSONResponse(\n        status_code=422,\n        content=jsonable_encoder({\"detail\": exc.errors(), \"body\": exc.body}),\n    )\n``` [3]",
+      "refused": false,
+      "latency_seconds_excluding_judge": 6.673,
+      "evidence": [
+        {
+          "citation": "[1]",
+          "source": "tutorial/handling-errors.md",
+          "heading": "Handling Errors { #handling-errors } > Override the default exception handlers { #override-the-default-exception-handlers } > Reuse **FastAPI**'s exception handlers { #reuse-fastapis-exception-handlers }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/handling-errors.md",
+          "text": "@app.exception_handler(RequestValidationError)\nasync def validation_exception_handler(request, exc):\n    print(f\"OMG! The client sent invalid data!: {exc}\")\n    return await request_validation_exception_handler(request, exc)\n\n\n@app.get(\"/items/{item_id}\")\nasync def read_item(item_id: int):\n    if item_id == 3:\n        raise HTTPException(status_code=418, detail=\"Nope! I don't like 3.\")\n    return {\"item_id\": item_id}\n```\n\n\nIn this example you are just printing the error with a very expressive message, but you get the idea. You can use the exception and then just reuse the default exception handlers.",
+          "cosine_similarity": 0.6646
+        },
+        {
+          "citation": "[2]",
+          "source": "tutorial/handling-errors.md",
+          "heading": "Handling Errors { #handling-errors } > Override the default exception handlers { #override-the-default-exception-handlers }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/handling-errors.md",
+          "text": "## Override the default exception handlers { #override-the-default-exception-handlers }\n\n**FastAPI** has some default exception handlers.\n\nThese handlers are in charge of returning the default JSON responses when you `raise` an `HTTPException` and when the request has invalid data.\n\nYou can override these exception handlers with your own.",
+          "cosine_similarity": 0.5745
+        },
+        {
+          "citation": "[3]",
+          "source": "tutorial/handling-errors.md",
+          "heading": "Handling Errors { #handling-errors } > Override the default exception handlers { #override-the-default-exception-handlers } > Use the `RequestValidationError` body { #use-the-requestvalidationerror-body }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/handling-errors.md",
+          "text": "### Use the `RequestValidationError` body { #use-the-requestvalidationerror-body }\n\nThe `RequestValidationError` contains the `body` it received with invalid data.\n\nYou could use it while developing your app to log the body and debug it, return it to the user, etc.\n\n\n```python\nfrom fastapi import FastAPI, Request\nfrom fastapi.encoders import jsonable_encoder\nfrom fastapi.exceptions import RequestValidationError\nfrom fastapi.responses import JSONResponse\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\n\n@app.exception_handler(RequestValidationError)\nasync def validation_exception_handler(request: Request, exc: RequestValidationError):\n    return JSONResponse(\n        status_code=422,\n        content=jsonable_encoder({\"detail\": exc.errors(), \"body\": exc.body}),\n    )\n\n\nclass Item(BaseModel",
+          "cosine_similarity": 0.5428
+        },
+        {
+          "citation": "[4]",
+          "source": "tutorial/handling-errors.md",
+          "heading": "Handling Errors { #handling-errors } > Override the default exception handlers { #override-the-default-exception-handlers } > Override request validation exceptions { #override-request-validation-exceptions }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/handling-errors.md",
+          "text": "### Override request validation exceptions { #override-request-validation-exceptions }\n\nWhen a request contains invalid data, **FastAPI** internally raises a `RequestValidationError`.\n\nAnd it also includes a default exception handler for it.\n\nTo override it, import the `RequestValidationError` and use it with `@app.exception_handler(RequestValidationError)` to decorate the exception handler.\n\nThe exception handler will receive a `Request` and the exception.\n\n\n```python\nfrom fastapi import FastAPI, HTTPException\nfrom fastapi.exceptions import RequestValidationError\nfrom fastapi.responses import PlainTextResponse\nfrom starlette.exceptions import HTTPException as StarletteHTTPException\n\napp = FastAPI()\n\n\n@app.exception_handler(StarletteHTTPException)\nasync def http_exception_handler(request, exc):\n    return PlainTextResponse(str(exc.detail), status_code=exc.status_code)\n\n\n@app.exception_handler(",
+          "cosine_similarity": 0.5804
+        }
+      ],
+      "judge": {
+        "context_relevance": 3,
+        "groundedness": 3,
+        "answer_relevance": 3,
+        "rationale": "The retrieved excerpts are highly relevant to handling validation errors in FastAPI. The assistant's response directly answers the user's question with clear steps and code examples, and all factual claims and code snippets are fully supported and accurately cited."
+      }
+    },
+    {
+      "id": "Q04",
+      "category": "paraphrase",
+      "question": "How do I reuse the same database connection logic across several endpoints?",
+      "answer": "You can reuse database connection logic across endpoints by using FastAPI's **Dependency Injection** system [2]. \n\nDependency Injection allows your path operation functions to declare the dependencies they require, and FastAPI takes care of providing them [2]. This is specifically useful for sharing database connections across endpoints while minimizing code repetition [2].\n\nAdditionally, you can set up one single `engine` object for all your code to connect to the same database [1].",
+      "refused": false,
+      "latency_seconds_excluding_judge": 3.81,
+      "evidence": [
+        {
+          "citation": "[1]",
+          "source": "tutorial/sql-databases.md",
+          "heading": "SQL (Relational) Databases { #sql-relational-databases } > Create the App with a Single Model { #create-the-app-with-a-single-model } > Create an Engine { #create-an-engine }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/sql-databases.md",
+          "text": "### Create an Engine { #create-an-engine }\n\nA SQLModel `engine` (underneath it's actually a SQLAlchemy `engine`) is what **holds the connections** to the database.\n\nYou would have **one single `engine` object** for all your code to connect to the same database.\n\n\n```python\nsqlite_file_name = \"database.db\"\nsqlite_url = f\"sqlite:///{sqlite_file_name}\"\n\nconnect_args = {\"check_same_thread\": False}\nengine = create_engine(sqlite_url, connect_args=connect_args)\n```\n\n\nUsing `check_same_thread=False` allows FastAPI to use the same SQLite database in different threads. This is necessary as **one single request** could use **more than one thread** (for example in dependencies).\n\nDon't worry, with the way the code is structured, we'll make sure we use **a single SQLModel *session* per",
+          "cosine_similarity": 0.465
+        },
+        {
+          "citation": "[2]",
+          "source": "tutorial/dependencies/index.md",
+          "heading": "Dependencies { #dependencies } > What is \"Dependency Injection\" { #what-is-dependency-injection }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/dependencies/index.md",
+          "text": "## What is \"Dependency Injection\" { #what-is-dependency-injection }\n\n**\"Dependency Injection\"** means, in programming, that there is a way for your code (in this case, your *path operation functions*) to declare things that it requires to work and use: \"dependencies\".\n\nAnd then, that system (in this case **FastAPI**) will take care of doing whatever is needed to provide your code with those needed dependencies (\"inject\" the dependencies).\n\nThis is very useful when you need to:\n\n* Have shared logic (the same code logic again and again).\n* Share database connections.\n* Enforce security, authentication, role requirements, etc.\n* And many other things...\n\nAll these, while minimizing code repetition.",
+          "cosine_similarity": 0.3687
+        },
+        {
+          "citation": "[3]",
+          "source": "tutorial/sql-databases.md",
+          "heading": "SQL (Relational) Databases { #sql-relational-databases } > Create the App with a Single Model { #create-the-app-with-a-single-model } > Create an Engine { #create-an-engine }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/sql-databases.md",
+          "text": "* (for example in dependencies).\n\nDon't worry, with the way the code is structured, we'll make sure we use **a single SQLModel *session* per request** later, this is actually what the `check_same_thread` is trying to achieve.",
+          "cosine_similarity": 0.437
+        },
+        {
+          "citation": "[4]",
+          "source": "tutorial/sql-databases.md",
+          "heading": "SQL (Relational) Databases { #sql-relational-databases } > Update the App with Multiple Models { #update-the-app-with-multiple-models }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/sql-databases.md",
+          "text": "## Update the App with Multiple Models { #update-the-app-with-multiple-models }\n\nNow let's **refactor** this app a bit to increase **security** and **versatility**.\n\nIf you check the previous app, in the UI you can see that, up to now, it lets the client decide the `id` of the `Hero` to create. 😱\n\nWe shouldn't let that happen, they could overwrite an `id` we already have assigned in the DB. Deciding the `id` should be done by the **backend** or the **database**, **not by the client**.\n\nAdditionally, we create a `secret_name` for the hero, but so far, we are returning it everywhere, that's not very **secret**... 😅\n\nWe'll fix these things by adding a few **extra models**. Here's where SQLModel will shine. ✨",
+          "cosine_similarity": 0.3514
+        }
+      ],
+      "judge": {
+        "context_relevance": 3,
+        "groundedness": 3,
+        "answer_relevance": 3,
+        "rationale": "The retrieved excerpts directly address sharing database connections using FastAPI's dependency injection and creating a single engine object. The assistant's answer accurately synthesizes this evidence with accurate citations."
+      }
+    },
+    {
+      "id": "Q07",
+      "category": "multi_section",
+      "question": "How does FastAPI decide whether a parameter comes from the path, query string, or JSON body?",
+      "answer": "FastAPI determines how to interpret function parameters based on the following rules:\n\n* **Path Parameter:** If the parameter is declared in the path, it will be used as a path parameter [1].\n* **Query Parameter:** If the parameter is of a singular type (such as `int`, `float`, `str`, `bool`, etc.) [1] or is not part of the path parameters [2], it will be interpreted as a query parameter [1], [2].\n* **Request Body:** If the parameter is declared to be of the type of a Pydantic model, it will be interpreted as a request body [1].",
+      "refused": false,
+      "latency_seconds_excluding_judge": 5.412,
+      "evidence": [
+        {
+          "citation": "[1]",
+          "source": "tutorial/body.md",
+          "heading": "Request Body { #request-body } > Request body + path + query parameters { #request-body-path-query-parameters }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/body.md",
+          "text": "The function parameters will be recognized as follows:\n\n* If the parameter is also declared in the **path**, it will be used as a path parameter.\n* If the parameter is of a **singular type** (like `int`, `float`, `str`, `bool`, etc) it will be interpreted as a **query** parameter.\n* If the parameter is declared to be of the type of a **Pydantic model**, it will be interpreted as a request **body**.\n\n/// note\n\nFastAPI will know that the value of `q` is not required because of the default value `= None`.\n\nThe `str | None` is not used by FastAPI to determine that the value is not required, it will know it's not required because it has a default value of `= None`.\n\nBut adding the type annotations will allow your editor to give you better support and detect errors.\n\n///",
+          "cosine_similarity": 0.7006
+        },
+        {
+          "citation": "[2]",
+          "source": "tutorial/query-params.md",
+          "heading": "Query Parameters { #query-parameters }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/query-params.md",
+          "text": "# Query Parameters { #query-parameters }\n\nWhen you declare other function parameters that are not part of the path parameters, they are automatically interpreted as \"query\" parameters.\n\n\n```python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\nfake_items_db = [{\"item_name\": \"Foo\"}, {\"item_name\": \"Bar\"}, {\"item_name\": \"Baz\"}]\n\n\n@app.get(\"/items/\")\nasync def read_item(skip: int = 0, limit: int = 10):\n    return fake_items_db[skip : skip + limit]\n```\n\n\nThe query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters.\n\nFor example, in the URL:\n\n```\nhttp://127.0.0.1:8000/items/?skip=0&limit=10\n```\n\n...the query parameters are:\n\n* `skip`: with a value of `0`\n* `limit`:",
+          "cosine_similarity": 0.6642
+        },
+        {
+          "citation": "[3]",
+          "source": "tutorial/path-params.md",
+          "heading": "Path Parameters { #path-parameters }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/path-params.md",
+          "text": "# Path Parameters { #path-parameters }\n\nYou can declare path \"parameters\" or \"variables\" with the same syntax used by Python format strings:\n\n\n```python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n\n@app.get(\"/items/{item_id}\")\nasync def read_item(item_id):\n    return {\"item_id\": item_id}\n```\n\n\nThe value of the path parameter `item_id` will be passed to your function as the argument `item_id`.\n\nSo, if you run this example and go to [http://127.0.0.1:8000/items/foo](http://127.0.0.1:8000/items/foo), you will see a response of:\n\n```JSON\n{\"item_id\":\"foo\"}\n```",
+          "cosine_similarity": 0.6586
+        },
+        {
+          "citation": "[4]",
+          "source": "tutorial/query-params.md",
+          "heading": "Query Parameters { #query-parameters } > Optional parameters { #optional-parameters }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/query-params.md",
+          "text": "## Optional parameters { #optional-parameters }\n\nThe same way, you can declare optional query parameters, by setting their default to `None`:\n\n\n```python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n\n@app.get(\"/items/{item_id}\")\nasync def read_item(item_id: str, q: str | None = None):\n    if q:\n        return {\"item_id\": item_id, \"q\": q}\n    return {\"item_id\": item_id}\n```\n\n\nIn this case, the function parameter `q` will be optional, and will be `None` by default.\n\n/// tip\n\nAlso notice that **FastAPI** is smart enough to notice that the path parameter `item_id` is a path parameter and `q` is not, so, it's a query parameter.\n\n///",
+          "cosine_similarity": 0.6226
+        }
+      ],
+      "judge": {
+        "context_relevance": 3,
+        "groundedness": 3,
+        "answer_relevance": 3,
+        "rationale": "The assistant directly answers the question using the retrieved excerpts and includes accurate citations. All claims are well-supported by the evidence provided."
+      }
+    },
+    {
+      "id": "Q10",
+      "category": "multi_section",
+      "question": "How can I reuse a dependency that itself needs another dependency?",
+      "answer": "You can create a dependency function (a \"dependable\") that declares a dependency of its own by using `Depends()` within its parameter list [2]. \n\nIf a common sub-dependency is declared multiple times across dependencies for the same path operation, FastAPI calls that sub-dependency only once per request [1]. FastAPI stores the returned value in a cache and reuses it for all dependants that require it during that request [1].",
+      "refused": false,
+      "latency_seconds_excluding_judge": 4.408,
+      "evidence": [
+        {
+          "citation": "[1]",
+          "source": "tutorial/dependencies/sub-dependencies.md",
+          "heading": "Sub-dependencies { #sub-dependencies } > Using the same dependency multiple times { #using-the-same-dependency-multiple-times }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/dependencies/sub-dependencies.md",
+          "text": "## Using the same dependency multiple times { #using-the-same-dependency-multiple-times }\n\nIf one of your dependencies is declared multiple times for the same *path operation*, for example, multiple dependencies have a common sub-dependency, **FastAPI** will know to call that sub-dependency only once per request.\n\nAnd it will save the returned value in a <dfn title=\"A utility/system to store computed/generated values, to reuse them instead of computing them again.\">\"cache\"</dfn> and pass it to all the \"dependants\" that need it in that specific request, instead of calling the dependency multiple times for the same request.\n\nIn an advanced scenario where you know you need the dependency to be called at every step (possibly multiple times) in the same request instead of using the \"cached\" value, you can set the parameter `use_cache=False` when using `Depends`:\n\n//// tab | Python 3.10+\n\n```Python hl_lines=\"2\"\nasync def needy_dependency(\n    fresh_",
+          "cosine_similarity": 0.475
+        },
+        {
+          "citation": "[2]",
+          "source": "tutorial/dependencies/sub-dependencies.md",
+          "heading": "Sub-dependencies { #sub-dependencies } > Second dependency, \"dependable\" and \"dependant\" { #second-dependency-dependable-and-dependant }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/dependencies/sub-dependencies.md",
+          "text": "## Second dependency, \"dependable\" and \"dependant\" { #second-dependency-dependable-and-dependant }\n\nThen you can create another dependency function (a \"dependable\") that at the same time declares a dependency of its own (so it is a \"dependant\" too):\n\n\n```python\nfrom typing import Annotated\n\nfrom fastapi import Cookie, Depends, FastAPI\n\napp = FastAPI()\n\n\ndef query_extractor(q: str | None = None):\n    return q\n\n\ndef query_or_cookie_extractor(\n    q: Annotated[str, Depends(query_extractor)],\n    last_query: Annotated[str | None, Cookie()] = None,\n):\n    if not q:\n        return last_query\n    return q\n\n\n@app.get(\"/items/\")\nasync def read_query(\n    query_or_default: Annotated[str, Depends(query_or_cookie_extractor)],\n):\n    return {\"q_or_cookie\": query_or_default}\n```",
+          "cosine_similarity": 0.4253
+        },
+        {
+          "citation": "[3]",
+          "source": "tutorial/dependencies/dependencies-in-path-operation-decorators.md",
+          "heading": "Dependencies in path operation decorators { #dependencies-in-path-operation-decorators }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/dependencies/dependencies-in-path-operation-decorators.md",
+          "text": "# Dependencies in path operation decorators { #dependencies-in-path-operation-decorators }\n\nIn some cases you don't really need the return value of a dependency inside your *path operation function*.\n\nOr the dependency doesn't return a value.\n\nBut you still need it to be executed/solved.\n\nFor those cases, instead of declaring a *path operation function* parameter with `Depends`, you can add a `list` of `dependencies` to the *path operation decorator*.",
+          "cosine_similarity": 0.399
+        },
+        {
+          "citation": "[4]",
+          "source": "tutorial/dependencies/dependencies-in-path-operation-decorators.md",
+          "heading": "Dependencies in path operation decorators { #dependencies-in-path-operation-decorators } > Dependencies errors and return values { #dependencies-errors-and-return-values }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/dependencies/dependencies-in-path-operation-decorators.md",
+          "text": "## Dependencies errors and return values { #dependencies-errors-and-return-values }\n\nYou can use the same dependency *functions* you use normally.",
+          "cosine_similarity": 0.5115
+        }
+      ],
+      "judge": {
+        "context_relevance": 3,
+        "groundedness": 3,
+        "answer_relevance": 3,
+        "rationale": "The assistant directly answers the question using the retrieved excerpts. The citations are precise and supported by excerpts [1] and [2], explaining how sub-dependencies are created with `Depends()` and how FastAPI handles reuse and caching."
+      }
+    },
+    {
+      "id": "Q11",
+      "category": "direct",
+      "question": "How do I declare the response schema and filter returned fields in FastAPI?",
+      "answer": "In FastAPI, you can declare the response schema and filter returned fields in two primary ways:\n\n1. **Using the `response_model` Parameter**\n   * Pass the schema type (such as a Pydantic model or a list of models, e.g., `List[Item]`) to the `response_model` parameter of the path operation decorator method (`get`, `post`, etc.) [3]. \n   * FastAPI uses `response_model` to validate, document, convert, and filter output data so that only declared fields are returned [1, 3].\n   * If editor tooling complains about strict return types when using `response_model`, you can annotate the function return type as `Any` [3].\n\n2. **Using Function Return Type Annotations**\n   * You can annotate the path operation function's return type using classes and inheritance [1, 4]. \n   * FastAPI reads the return type annotation and ensures the output data includes **only** the fields declared in that type [4].\n\n**Priority Rule:**\nIf both a return type annotation and a `response_model` are specified, the `response_model` takes priority and is used by FastAPI for data filtering, validation, and documentation [2].",
+      "refused": false,
+      "latency_seconds_excluding_judge": 6.489,
+      "evidence": [
+        {
+          "citation": "[1]",
+          "source": "tutorial/response-model.md",
+          "heading": "Response Model - Return Type { #response-model-return-type } > Return Type and Data Filtering { #return-type-and-data-filtering }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/response-model.md",
+          "text": "## Return Type and Data Filtering { #return-type-and-data-filtering }\n\nLet's continue from the previous example. We wanted to **annotate the function with one type**, but we wanted to be able to return from the function something that actually includes **more data**.\n\nWe want FastAPI to keep **filtering** the data using the response model. So that even though the function returns more data, the response will only include the fields declared in the response model.\n\nIn the previous example, because the classes were different, we had to use the `response_model` parameter. But that also means that we don't get the support from the editor and tools checking the function return type.\n\nBut in most of the cases where we need to do something like this, we want the model just to **filter/remove** some of the data as in this example.\n\nAnd in those cases, we can use classes and inheritance to take advantage of function **type annotations** to get better support in the editor and tools, and still get the FastAPI **data filtering**",
+          "cosine_similarity": 0.6689
+        },
+        {
+          "citation": "[2]",
+          "source": "tutorial/response-model.md",
+          "heading": "Response Model - Return Type { #response-model-return-type } > `response_model` Parameter { #response-model-parameter } > `response_model` Priority { #response-model-priority }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/response-model.md",
+          "text": "### `response_model` Priority { #response-model-priority }\n\nIf you declare both a return type and a `response_model`, the `response_model` will take priority and be used by FastAPI.\n\nThis way you can add correct type annotations to your functions even when you are returning a type different than the response model, to be used by the editor and tools like mypy. And still you can have FastAPI do the data validation, documentation, etc. using the `response_model`.\n\nYou can also use `response_model=None` to disable creating a response model for that *path operation*, you might need to do it if you are adding type annotations for things that are not valid Pydantic fields, you will see an example of that in one of the sections below.",
+          "cosine_similarity": 0.6349
+        },
+        {
+          "citation": "[3]",
+          "source": "tutorial/response-model.md",
+          "heading": "Response Model - Return Type { #response-model-return-type } > `response_model` Parameter { #response-model-parameter }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/response-model.md",
+          "text": "/// note\n\nNotice that `response_model` is a parameter of the \"decorator\" method (`get`, `post`, etc). Not of your *path operation function*, like all the parameters and body.\n\n///\n\n`response_model` receives the same type you would declare for a Pydantic model field, so, it can be a Pydantic model, but it can also be, e.g. a `list` of Pydantic models, like `List[Item]`.\n\nFastAPI will use this `response_model` to do all the data documentation, validation, etc. and also to **convert and filter the output data** to its type declaration.\n\n/// tip\n\nIf you have strict type checks in your editor, mypy, etc, you can declare the function return type as `Any`.\n\nThat way you tell the editor that you are intentionally returning anything. But FastAPI will still do the data documentation, validation, filtering, etc. with the `response_model`.\n\n///",
+          "cosine_similarity": 0.6406
+        },
+        {
+          "citation": "[4]",
+          "source": "tutorial/response-model.md",
+          "heading": "Response Model - Return Type { #response-model-return-type } > Return Type and Data Filtering { #return-type-and-data-filtering } > FastAPI Data Filtering { #fastapi-data-filtering }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/response-model.md",
+          "text": "### FastAPI Data Filtering { #fastapi-data-filtering }\n\nNow, for FastAPI, it will see the return type and make sure that what you return includes **only** the fields that are declared in the type.\n\nFastAPI does several things internally with Pydantic to make sure that those same rules of class inheritance are not used for the returned data filtering, otherwise you could end up returning much more data than what you expected.\n\nThis way, you can get the best of both worlds: type annotations with **tooling support** and **data filtering**.",
+          "cosine_similarity": 0.5849
+        }
+      ],
+      "judge": {
+        "context_relevance": 3,
+        "groundedness": 3,
+        "answer_relevance": 3,
+        "rationale": "The retrieved excerpts are directly relevant to response schema declaration and output filtering in FastAPI. The assistant accurately synthesizes the information from all excerpts, correctly explains both the `response_model` parameter and return type annotations alongside the priority rules, and cites the sources accurately."
+      }
+    },
+    {
+      "id": "Q13",
+      "category": "global_challenge",
+      "question": "Across all FastAPI tutorial topics, which security mechanism is most commonly recommended, and how many chapters endorse it?",
+      "answer": "I cannot answer this question based on the provided documentation.",
+      "refused": true,
+      "latency_seconds_excluding_judge": 3.547,
+      "evidence": [
+        {
+          "citation": "[1]",
+          "source": "tutorial/security/oauth2-jwt.md",
+          "heading": "OAuth2 with Password (and hashing), Bearer with JWT tokens { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens } > Recap { #recap }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/security/oauth2-jwt.md",
+          "text": "## Recap { #recap }\n\nWith what you have seen up to now, you can set up a secure **FastAPI** application using standards like OAuth2 and JWT.\n\nIn almost any framework handling the security becomes a rather complex subject quite quickly.\n\nMany packages that simplify it a lot have to make many compromises with the data model, database, and available features. And some of these packages that simplify things too much actually have security flaws underneath.\n\n---\n\n**FastAPI** doesn't make any compromise with any database, data model or tool.\n\nIt gives you all the flexibility to choose the ones that fit your project the best.\n\nAnd you can use directly many well maintained and widely used packages like `pwdlib` and `PyJWT`, because **FastAPI** doesn't require any complex mechanisms to integrate external packages.\n\nBut it provides you the tools to simplify the process as much as possible without compromising flexibility, robustness, or security.\n\nAnd you can use and implement secure, standard protocols, like OAuth2 in a relatively simple way.",
+          "cosine_similarity": 0.5767
+        },
+        {
+          "citation": "[2]",
+          "source": "tutorial/security/first-steps.md",
+          "heading": "Security - First Steps { #security-first-steps } > **FastAPI**'s `OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/security/first-steps.md",
+          "text": "## **FastAPI**'s `OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer }\n\n**FastAPI** provides several tools, at different levels of abstraction, to implement these security features.\n\nIn this example we are going to use **OAuth2**, with the **Password** flow, using a **Bearer** token. We do that using the `OAuth2PasswordBearer` class.\n\n/// note\n\nA \"bearer\" token is not the only option.\n\nBut it's the best one for our use case.\n\nAnd it might be the best for most use cases, unless you are an OAuth2 expert and know exactly why there's another option that better suits your needs.\n\nIn that case, **FastAPI** also provides you with the tools to build it.\n\n///\n\nWhen we create an instance of the `OAuth2PasswordBearer` class we pass in the `tokenUrl` parameter. This parameter contains the URL that the",
+          "cosine_similarity": 0.4989
+        },
+        {
+          "citation": "[3]",
+          "source": "tutorial/security/first-steps.md",
+          "heading": "Security - First Steps { #security-first-steps } > **FastAPI**'s `OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer } > Use it { #use-it }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/security/first-steps.md",
+          "text": "\" in the OpenAPI schema (and the automatic API docs).\n\n/// note | Technical Details\n\n**FastAPI** will know that it can use the class `OAuth2PasswordBearer` (declared in a dependency) to define the security scheme in OpenAPI because it inherits from `fastapi.security.oauth2.OAuth2`, which in turn inherits from `fastapi.security.base.SecurityBase`.",
+          "cosine_similarity": 0.5506
+        },
+        {
+          "citation": "[4]",
+          "source": "tutorial/security/first-steps.md",
+          "heading": "Security - First Steps { #security-first-steps } > **FastAPI**'s `OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer } > Use it { #use-it }",
+          "source_url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/security/first-steps.md",
+          "text": "All the security utilities that integrate with OpenAPI (and the automatic API docs) inherit from `SecurityBase`, that's how **FastAPI** can know how to integrate them in OpenAPI.\n\n///",
+          "cosine_similarity": 0.6073
+        }
+      ],
+      "judge": {
+        "context_relevance": 2,
+        "groundedness": 3,
+        "answer_relevance": 3,
+        "rationale": "The question asks for a corpus-wide aggregation across all FastAPI tutorial topics. The retrieved excerpts only cover a few specific security pages and do not provide enough context to make a global claim or exact count. The assistant correctly recognized the limitation of the context and refused to answer."
+      }
+    },
+    {
+      "id": "Q05",
+      "category": "out_of_scope",
+      "question": "What will the weather be tomorrow?",
+      "answer": "I cannot answer this question based on the provided documentation.",
+      "refused": true,
+      "latency_seconds_excluding_judge": 0.016,
+      "evidence": [],
+      "judge": {
+        "context_relevance": 3,
+        "groundedness": 3,
+        "answer_relevance": 3,
+        "rationale": "The question is out-of-scope, no context was retrieved, and the assistant correctly stated that it cannot answer based on the documentation."
+      }
+    }
+  ]
+}
