@@ -22,8 +22,8 @@ The evaluated index contained **555 chunks**. The generator supports Gemini (use
 ## Quick start
 
 ```bash
-git clone https://github.com/alainlau/fastapi-documentation-rag.git
-cd fastapi-documentation-rag
+git clone https://github.com/alainlau/fastapi-documentation-rag-final.git
+cd fastapi-documentation-rag-final
 uv sync
 ```
 
